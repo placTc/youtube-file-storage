@@ -208,6 +208,7 @@ pip-selfcheck.json
 
 # custom_additions
 dev_main.py
+test.py
 GAMEPLAN.md
 
 
