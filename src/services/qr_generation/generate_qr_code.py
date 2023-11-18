@@ -1,5 +1,6 @@
 from qrcode import make
 
+
 def generate_qr_code(data: str, destination_path: str):
     """
     Create qr code and save it
@@ -10,4 +11,3 @@ def generate_qr_code(data: str, destination_path: str):
     """
     qr = make(data)
     qr.save(destination_path)
-    
