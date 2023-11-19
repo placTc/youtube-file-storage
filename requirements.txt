@@ -1,0 +1,5 @@
+qrcode==7.4.2
+pillow==10.1.0
+colorama==0.4.6
+pypng==0.20220715.0
+typing-extensions==4.8.0
