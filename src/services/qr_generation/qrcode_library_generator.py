@@ -31,9 +31,9 @@ def generate_qr_code(data: str, destination_path: str, error_correction: int = L
             2 - Quartile: 25% of bytes can be restored
             3 - High: 30% of bytes can be restored
     """
-    true_ec_value = _convert_error_correction_value(error_correction)
-    qr = make(data)
-    qr.save(destination_path, error_correction=true_ec_value)
+    qrcode_lib_ec_value = _convert_error_correction_value(error_correction)
+    qr = make(data, error_correction=qrcode_lib_ec_value)
+    qr.save(destination_path)
 
 def _convert_error_correction_value(error_correction: int) -> int:
     """
