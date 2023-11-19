@@ -36,6 +36,10 @@ def generate_qr_code(data: str, destination_path: str, error_correction: int = L
     qr.save(destination_path, error_correction=true_ec_value)
 
 def _convert_error_correction_value(error_correction: int) -> int:
+    """
+    the qrcode lib has some fucked up values, i made the values more logical but now i need to convert them
+    this code is literally mine i did not need to do this i did this out of spite
+    """
     if error_correction in [1, 3]:
         return error_correction - 1
     
