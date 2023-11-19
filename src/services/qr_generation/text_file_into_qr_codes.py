@@ -1,9 +1,12 @@
 from io import StringIO
+from typing import overload
 
 from click import Path
 
 from services.qr_generation.interface import QRGenerator
 from services.qr_generation.constants import MEDIUM_ERROR_CORRECTION_MAX_DATA_SIZE
+from multipledispatch import dispatch
+
 
 def convert_text_file_into_qr_codes(text_file: StringIO, target_folder: Path | str, qr_generator: QRGenerator, qr_data_size: int = MEDIUM_ERROR_CORRECTION_MAX_DATA_SIZE):
     """
@@ -21,6 +24,19 @@ def convert_text_file_into_qr_codes(text_file: StringIO, target_folder: Path | s
         if not part:
             break
         
-        qr_generator(part, target_folder / f"{index}.png")
+        target_path = _create_target_path(target_folder, f"{index}.png")
+        qr_generator(part, target_path)
+        
+        
+@dispatch(str, str)
+@overload
+def _create_target_path(path: str, file: str) -> Path:
+    return Path(path) / file
+
+
+@dispatch(Path, str)
+@overload
+def _create_target_path(path: Path, file: str) -> Path:
+    return path / file
         
         
